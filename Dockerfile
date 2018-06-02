@@ -15,7 +15,7 @@ RUN yum -y install gcc git curl make zlib-devel bzip2 bzip2-devel \
 
 RUN yum install -y git cmake gcc-c++ gcc binutils libX11-devel libXpm-devel libXft-devel libXext-devel gcc-gfortran openssl-devel pcre-devel mesa-libGL-devel mesa-libGLU-devel glew-devel ftgl-devel mysql-devel fftw-devel cfitsio-devel graphviz-devel avahi-compat-libdns_sd-devel libldap-dev python-devel libxml2-devel gsl-static
 RUN yum install -y  compat-gcc-44 compat-gcc-44-c++ compat-gcc-44-c++.gfortran python-pip atlas-devel lapack-devel blas-devel
-#     rm -f root_v5.34.26.Linux-slc6_amd64-gcc4.4.tar.gz
+
 
 WORKDIR /opt/
 
@@ -39,11 +39,8 @@ ENV PYTHONDIR=$ROOTSYS
 ENV LD_LIBRARY_PATH=$ROOTSYS/lib:$PYTHONDIR/lib:$ROOTSYS/bindings/pyroot:$LD_LIBRARY_PATH
 ENV PYTHONPATH=$ROOTSYS/lib:$PYTHONPATH:$ROOTSYS/bindings/pyroot
 
-
 ENV LD_LIBRARY_PATH="/opt/MultiNest/lib:$LD_LIBRARY_PATH"
 ENV MULTINEST=/opt/MultiNest
-
-
 
 
 WORKDIR /opt
@@ -53,7 +50,7 @@ COPY installMultiNest.sh /opt/
 RUN /bin/bash /opt/installMultiNest.sh
 
 RUN pip install --upgrade pip && \
-    pip install numpy scipy ipython jupyter astropy==2.0.6 pymultinest
+    pip install numpy scipy ipython jupyter pymultinest matplotlib seaborn pandas root_numpy  astropy==2.0.6 --ignore-installed six
 
 
 RUN git clone https://github.com/giacomov/astromodels.git &&\
