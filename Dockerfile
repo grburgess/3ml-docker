@@ -50,7 +50,7 @@ COPY installMultiNest.sh /opt/
 RUN /bin/bash /opt/installMultiNest.sh
 
 RUN pip install --upgrade pip && \
-    pip install numpy scipy ipython jupyter pymultinest matplotlib seaborn pandas root_numpy  astropy==2.0.6 --ignore-installed six
+    pip install numpy scipy ipython jupyter pymultinest matplotlib h5py  seaborn pandas root_numpy  astropy==2.0.6 --ignore-installed six
 
 
 RUN git clone https://github.com/giacomov/astromodels.git &&\
